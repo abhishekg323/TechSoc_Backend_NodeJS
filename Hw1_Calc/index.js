@@ -1,25 +1,18 @@
 const express= require("express");
 const app = express();
 const myCalc = (firstNum,secondNum,operator) => {
-    let output;
     switch (operator) {
         case "add":
-            output=firstNum+secondNum;
-            break;
+            return firstNum+secondNum;
         case "minus":
-            output=firstNum-secondNum;
-            break;
+            return firstNum-secondNum;
         case "multiply":
-            output=firstNum*secondNum;
-            break;
+            return firstNum*secondNum;
         case "divide":
-            output=firstNum/secondNum;
-            break;  
+            return firstNum/secondNum; 
         default:
-            output="wrong input";
-            break;
+            return "wrong input";
     }
-    return output;
 }
 app.get("/qcalc",(req,res)=>{       // localhost:5000/pcalc?num1=2&num2=3&opr=add
     let firstNum = Number(req.query['num1']);
