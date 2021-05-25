@@ -1,6 +1,6 @@
 const express= require("express");
 const app = express();
-function myCalc(firstNum,secondNum,operator){
+const myCalc = (firstNum,secondNum,operator) => {
     let output;
     switch (operator) {
         case "add":
@@ -36,21 +36,9 @@ app.get("/pcalc/:num1/:num2/:opr",(req,res)=>{       // localhost:5000/pcalc/2/3
     res.json({"First Number":firstNum,"Second Number":secondNum,"Operation Performed":operator,"Response":output});
 });
 app.get("/calc",(req,res)=>{
-    let out=`<form action="qcalc" method="get" >
-        Enter First Number : <input type="number" name="num1" required><br>
-        Enter Second Number : <input type="number" name="num2" required><br>
-        Select Operation : <select name="opr">
-            <option value="add">+</option>
-            <option value="minus">-</option>
-            <option value="multiply">*</option>
-            <option value="divide">/</option>
-        </select>
-        <input type="submit" value="Go" >
-        </form>
-    `;
-    res.send(out);
+    res.sendFile(__dirname+"\\calc.html");
 });
 
 app.listen(5000,()=>{
-    console.log("Server Started at port 5000!");
+    console.log("Server Started at port 5000! , visit http://localhost:5000/calc");
 });
